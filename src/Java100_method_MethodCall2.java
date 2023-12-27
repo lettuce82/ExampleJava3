@@ -12,7 +12,7 @@
 
     -------------------------------------------------------------
 
-    [쌤 풀이]
+    [쌤 풀이] - [내 풀이] 2번 방식으로 풀이하심
     - 추가 내용
     Integer 는 Wrapper 클래스인데 해당 클래스의 인스턴스 값을 전달하면 클래스의 참조값이 아닌 실제 들어있는 기본형 값이 전달된다.
 
@@ -30,13 +30,42 @@ public class Java100_method_MethodCall2 {
         return a;
     }
      */
-    public static void sum( Integer a ) {
-        a += 400;
-        System.out.println( a ); //클래스의 참조값이 아닌 100이라는 값이 출력됨
+
+    /*
+    [방법 2]
+    public static void sum(Number number) {
+        number.num += 400;
+        System.out.println(number.num);
     }
     public static void main(String[] args) {
-        Integer a = new Integer(100); //Integer 라는 Wrapper 클래스의 인스턴스 전달
-        sum(a);
+        //객체 변수 선언
+        Number number = new Number(100);
+
+        sum(number);
+        System.out.println(number.num);
+    }
+    */
+
+    public static void sum( int a ) {
+        a = a + 400;
+        System.out.println( a );
+    }
+
+    public static void main(String[] args) {
+        int a = 100;
+        sum( a );
+
         System.out.println( a );
     }
 }
+
+/*
+[방법 2]
+class Number {
+    int num;
+
+    public Number(int num) {
+        this.num = num;
+    }
+}
+ */
