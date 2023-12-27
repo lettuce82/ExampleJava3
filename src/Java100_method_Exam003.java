@@ -16,8 +16,7 @@
 public class Java100_method_Exam003 {
 
     public static int noParam() {
-        int result = 1 + 2;
-        return result;
+        return 1 + 2;
     }
 
 
