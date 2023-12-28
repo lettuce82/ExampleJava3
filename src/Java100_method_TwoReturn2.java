@@ -8,34 +8,47 @@ import java.util.Arrays;
     -----------------------------------------------------------------------
 
     [내 풀이]
-    [방법 1] 이중 배열 활용
-    [방법 2 ] static 클래스 생성 후 static 변수로 배열을 만들어 직접 접근하는 방법
+    배열 활용: 배열 생성 후 변환 전 string 값을 담은 후 변환 -> 변환된 배열을 반환
+
     -----------------------------------------------------------------------
 
     [쌤 풀이]
+    배열 활용: 배열에 담을 string 값을 미리 변환 후 배열에 담기 -> 해당 배열 반환
+    ----------------------------
+    String a_ = a.toUpperCase();
+    String b_ = b.toLowerCase();
+
+    // 리턴값 2개를 저장할 배열 변수 선언
+    String[] ret = { a_, b_ };
+    return ret;
+    ----------------------------
+    ㄴ 하지만 이 경우 String a_ 변수에 대문자가 들어갈 경우 소문자로 변환할 수 없음
+    ㄴ b_에 소문자가 들어갈 때도 마찬가지
 
  */
 public class Java100_method_TwoReturn2 {
     public static void main(String[] args) {
-        for (int i = 0; i < changeString().length; i++) {
-            for (int j = 0; j < changeString()[i].length; j++) {
-                System.out.println(changeString()[i][j]);
-            }
-        }
+        //반환된 배열을 담을 String 타입의 배열 선언
+        String[] arrString = changeString();
+
+        //배열에 담긴 값 출력
+        System.out.println(arrString[0] + " - " + arrString[1]);
     }
 
-    public static String[][] changeString() {
-        String[] beforeStrings = new String[]{"korea", "USA"};
-        String[] afterStrings = new String[beforeStrings.length];
+    public static String[] changeString() {
+        //String 타입의 배열 선언
+        String[] strings = new String[]{"korea", "USA"};
 
-        for (int i = 0; i < beforeStrings.length; i++) {
-            if (!beforeStrings[i].toUpperCase().equals(beforeStrings[i])) {
-                afterStrings[i] = beforeStrings[i].toUpperCase();
-            } else if (!beforeStrings[i].toLowerCase().equals(beforeStrings[i])) {
-                afterStrings[i] = beforeStrings[i].toLowerCase();
+        //반복문으로 배열에 담긴 값 변환 후 다시 배열에 담기
+        for (int i = 0; i < strings.length; i++) {
+            if (!strings[i].equals(strings[i].toUpperCase())) {
+                strings[i] = strings[i].toUpperCase();
+            } else if (!strings[i].equals(strings[i].toLowerCase())) {
+                strings[i] = strings[i].toLowerCase();
             }
         }
-        String[][] strings = {beforeStrings, afterStrings};
+
+        //변환된 배열 반환하기
         return strings;
     }
 }
