@@ -1,23 +1,64 @@
 package OOP;
 /*
-    클래스에서 상속이란 무엇인지 상속의 정의와 특징을 말해보시오.
-    이 문제는 자바 OOP 문법에서 상속에 대한 개념과 특징들에 대해서 알고 있는지를 묻는 문제이다.
+    클래스의 상속을 코드로 구현해보시오.
+    이 문제는 자바 OOP 문법에서 상속에 대한 개념과 그것을 코드로 구현할 수 있는지를 묻는 문제이다.
 
     --------------------------------
     [내 풀이]
-    - 상속이란 동일한 속성과 메서드를 여러 클래스에서 사용하고 있을 때 매번 중복하여 만드는 것 없이 중복되는 속성과 메서드를
-    하나의 클래스에 정의해 두고 해당 클래스를 물려받아 그대로 사용하는 것을 말한다.
-    - 부모 클래스의 모든 멤버변수와 메서드는 자식 클래스에서 접근이 가능하지만 접근 제어자가 private 이거나 해당 메서드가 생성자일 떄는
-    접근이 불가하다.
-    - 상속받은 메서드는 오버라이딩, 즉 재정의가 가능하다.
-    1) 메서드 이름이 같아야 한다.
-    2) 매개변수 타입, 순서, 개수가 같아야 한다.
-    3) 반환 타입이 같아야 한다. 단, 반환 타입이 하위 클래스 타입일 수 있다.
-    4) 오버라이딩 한 메서드의 접근제어자가 상위 클래스의 메서드보다 더 제한적이어서는 안 된다.
-    5) 오버라이딩 한 메서드는 상위 클래스의 메서드보다 더 많은 체크 예외를 throws로 선언할 수 없다. (더 적거나 같은 수의 예외, 하위 타입의 예외는 선언 가능)
-    - 또한 상속은 단일 상속만 가능하다. (다중 상속 불가)
+
     --------------------------------
  */
 
 public class Java100_oop_InheritanceSample {
+    public static void main(String[] args) {
+        //부모 & 자식 클래스 객체 생성 + 생성자 호출
+        ParentClass parentClass = new ParentClass("슈퍼맨", 20, 1, 100);
+        ChildClass childClass1 = new ChildClass("원더우먼", 30, 1, 100);
+        ChildClass childClass2 = new ChildClass("원더우먼", 30, 2, 300);
+        
+        //walk & print 메서드 호출
+        parentClass.walk();
+        parentClass.print();
+        childClass1.print();
+        childClass2.print();
+        childClass1.walk();
+    }
+}
+
+class ParentClass {
+    String name;
+    int age;
+    int gender;
+    int power;
+
+    public ParentClass(String name, int age, int gender, int power) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.power = power;
+    }
+
+    void walk() {
+        System.out.println("부모 클래스 -> 걸어가고 있어요~");
+    }
+    void print() {
+        System.out.println("이름 : " + this.name + ", 나이 : " + this.age + ", 성별 : " + this.gender + ", 파워 : " + this.power);
+    }
+}
+
+class ChildClass extends ParentClass {
+
+    public ChildClass(String name, int age, int gender, int power) {
+        super(name, age, gender, power);
+    }
+
+    @Override
+    void walk() {
+        System.out.println("자식 클래스 -> 2배로 빨리 걸어가고 있어요~");
+    }
+
+    @Override
+    void print() {
+        System.out.println("이름 : " + this.name + ", 나이 : " + this.age + ", 성별 : " + this.gender + ", 파워 : " + this.power);
+    }
 }
